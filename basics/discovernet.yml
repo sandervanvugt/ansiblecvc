@@ -1,0 +1,14 @@
+---
+# this fails on SMB devices
+- name: discover network
+  hosts: all
+  connection: local
+  tasks:
+    - name: get interface brief
+      ios_command:
+        commands:
+          - show ip interface brief | e una
+      register: interfaces
+    - name: print results
+      debug:
+        msg: "{{ interfaces.stdout[0] }}"
