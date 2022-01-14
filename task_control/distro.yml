@@ -3,14 +3,20 @@
   hosts: all
   vars:
     supported_distros:
-      - Ubuntu
+      - Rocky
       - CentOS
       - Fedora
+    rhpackage: httpd
+    ubupackage: apache2
   tasks:
     - name: install RH family specific packages
       yum:
-        name: "{{ mypackage }}"
+        name: "{{ rhpackage }}"
         state: present
       when: ansible_distribution in supported_distros 
-
+    - name: install Ubuntu package
+      apt:
+        name: "{{ ubupackage }}"
+        state: present
+      when: ansible_distribution == "Ubuntu"
 
