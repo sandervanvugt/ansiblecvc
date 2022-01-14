@@ -1,0 +1,17 @@
+---
+- name: vars_prompt demo
+  hosts: localhost
+  vars_prompt:
+  - name: package
+    prompt: which package do you want to install
+    private: no
+  tasks:
+  - debug:
+      msg: the package is {{ package }}
+
+- name: additional play
+  hosts: localhost
+  tasks:
+  - debug:
+      msg: demonstrating scope of {{ package }}
+
