@@ -1,8 +1,0 @@
----
-- name: test register
-  hosts: all
-  tasks:
-  - shell: cat /etc/passwd
-    register: passwd_contents
-  - debug: 
-      var: "passwd_contents"
