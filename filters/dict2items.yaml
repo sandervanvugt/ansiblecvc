@@ -1,11 +1,18 @@
 ---
 - name: creating users
   hosts: all
+  vars:
+    users:
+      lisa:
+        shell: bash
+        groups: wheel
+      anna:
+        shell: zsh
+        groups: wheel
   tasks:
   - name: create users
     user:
       name: "{{ item.key }}"
       shell: "{{ item.value.shell }}"
-      comment: "{{ item.value.comment }}"
       groups: "{{ item.value.groups }}"
     loop: "{{ users | dict2items }}"

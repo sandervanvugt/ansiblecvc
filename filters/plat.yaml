@@ -14,4 +14,5 @@
   tasks:
   - name: produce a flat list from a nested structure
     debug:
-      msg: "one list {{ whatever | flatten }}"
+      msg: "{{ item }}"
+    loop: "{{ whatever | map(attribute='cities') | flatten }}"
